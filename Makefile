@@ -3,7 +3,7 @@ package: manual
 	cd ..; R CMD build munge
 
 manual: doc
-	R CMD Rd2pdf . --title="Package \`munge'" --output=../manual.pdf --force
+	R CMD Rd2pdf . --title="Package \`munge'" --output=./manual.pdf --force
 
 doc:
 	R -e "devtools::document()"
