@@ -1,0 +1,14 @@
+Package: munge
+Title: Efficient Summary Statistics
+Version: 0.0.0.9000
+Author: Roy Nitulescu <roy.nitulescu@gmail.com>
+Maintainer: Roy Nitulescu <roy.nitulescu@gmail.com>
+Description: Uses data.table to compute summary statistics efficiently.
+Depends: R (>= 3.1.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    data.table (>= 1.14.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
