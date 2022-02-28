@@ -1,13 +1,12 @@
-#' Standard deviation
-#'
-#' Returns the standard deviation of the input values, excluding NA's. Returns NA if all values are NA.
-#' @param x numeric vector.
-#' @param NUMLST character vector of valid class types.
-#' @keywords stdev
+# Standard deviation
+#
+# Returns the standard deviation of the input values, excluding NA's. Returns NA if all values are NA.
+# @param x numeric vector.
+# @param NUMLST character vector of valid class types.
+# @keywords stdev
 #' @importFrom stats sd
-#' @export
-#' @examples
-#' stdev(c(1, 2, 3, NA))
+# @examples
+# stdev(c(1, 2, 3, NA))
 stdev <- function(x, NUMLST=get_NUMLST()) {
 	if ( !(class(x) %in% NUMLST) ) {
 		stop("Invalid variable type")

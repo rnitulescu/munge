@@ -1,17 +1,14 @@
-#' Summarize input data's selected columns using selected functions
-#'
-#' Returns a data table object with the summarized data in a standardized format.
-#' @param x data.table object containing columns to be summarized.
-#' @param byvar character variable representing name of variable to group statistics by (default: NULL).
-#' @param cols character vector representing names of variables to compute statistics for.
-#' @param FUN function to use for computing statistics.
-#' @param FUN.name character variable representing name of function to use for computing statistics
-#'                 (this function will only be called by another in a well controlled manner,
-#'                 so this will not be an issue).
-#' @keywords fn.summary
-#' @export
-#' @examples
-#' print(0)
+# Summarize input data's selected columns using selected functions
+#
+# Returns a data table object with the summarized data in a standardized format.
+# @param x data.table object containing columns to be summarized.
+# @param byvar character variable representing name of variable to group statistics by (default: NULL).
+# @param cols character vector representing names of variables to compute statistics for.
+# @param FUN function to use for computing statistics.
+# @param FUN.name character variable representing name of function to use for computing statistics
+#                 (this function will only be called by another in a well controlled manner,
+#                 so this will not be an issue).
+# @keywords fn.summary
 fn.summary <- function(x, byvar=NULL, cols, FUN, FUN.name)
 {
 	## Don't run if there are multiple byvars. Implementaton only works with 1 byvar at the moment.

@@ -1,16 +1,15 @@
-#' Two-way tabulation
-#'
-#' Returns a two-way table counting the number (and percentage) of observations per
-#' category combination across two vectors.
-#' @param x vector of factor or logical values.
-#' @param byvar vector of factor or logical values (stratification).
-#' @param FACLST character vector of valid class types.
-#' @keywords Two-way
+# Two-way tabulation
+#
+# Returns a two-way table counting the number (and percentage) of observations per
+# category combination across two vectors.
+# @param x vector of factor or logical values.
+# @param byvar vector of factor or logical values (stratification).
+# @param FACLST character vector of valid class types.
+# @keywords Two-way
 #' @import data.table
 #' @importFrom stats reshape
-#' @export
-#' @examples
-#' tab2way(x=factor(c("A","B","B","A")), byvar=factor(c("C","D","C","D")))
+# @examples
+# tab2way(x=factor(c("A","B","B","A")), byvar=factor(c("C","D","C","D")))
 tab2way <- function(x, byvar, FACLST=get_FACLST()) {
 	## Don't run if variables are not of logical or factor type
 	if ( !(class(x) %in% FACLST) | !(class(byvar) %in% FACLST) ) {

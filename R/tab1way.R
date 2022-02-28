@@ -1,14 +1,13 @@
-#' One-way tabulation
-#'
-#' Returns a one-way table counting the number (and percentage) of observations per category from a vector.
-#' @param x vector of factor or logical values.
-#' @param FACLST character vector of valid class types.
-#' @keywords One-way
+# One-way tabulation
+#
+# Returns a one-way table counting the number (and percentage) of observations per category from a vector.
+# @param x vector of factor or logical values.
+# @param FACLST character vector of valid class types.
+# @keywords One-way
 #' @import data.table
-#' @export
-#' @examples
-#' tab1way(x=factor(c("A","B","B")))
-#' tab1way(x=c(TRUE,FALSE,FALSE))
+# @examples
+# tab1way(x=factor(c("A","B","B")))
+# tab1way(x=c(TRUE,FALSE,FALSE))
 tab1way <- function(x, FACLST=get_FACLST()) {
 	## Don't run if variables are not of logical or factor type
 	if ( !(class(x) %in% FACLST) ) {

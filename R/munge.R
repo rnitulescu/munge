@@ -1,20 +1,28 @@
-#' Summarize ("munge") all the data in a data table (format-dependent)
+#' Efficient summary statistics
+#' 
+#' Summarize ("munge") all the data in a data.table.
 #'
-#' Returns a data table object with the summarized data in a standardized format.
-#' Calls function 'fn.summary' for statistics and stacks all results into one data table which the function returns.
-#' Allows for some extendibility by passing additional functions to 'fun.list' or different ones from the default.
+#' \code{munge} automatically calculates one-way or two-way summary statistics for all
+#' columns in a data.table object that are of the following types (it ignores all other types):
+#' integer, numeric, double, logical, and factor.
+#' The function returns a data.table object with the summarized data in a standardized format.
+#' It calls the function \code{fn.summary} for figuring out which statistics to compute
+#' and stacks all results into one data.table which the function returns.
+#' \code{munge} allows for some extendibility by allowing the user to pass additional functions to
+#' the \code{fun.list} argument, or overriding the defaults with different ones.
+#'
 #' @param x data.table object containing columns to be summarized.
-#' @param byvar character variable representing name of variable to group statistics by (default: NULL).
+#' @param byvar character variable representing name of variable to group statistics by (default: NULL, for one-way analysis).
 #' @param NUMLST character vector of valid class types.
 #' @param FACLST character vector of valid class types.
 #' @param fun.list list of functions indexed by their names to be used in the summarization.
+#'
 #' @keywords munge
 #' @export
 #' @examples
-#' require(data.table)
 #' data(ChickWeight)
-#' ChickWeight <- within(ChickWeight, Diet <- factor(Diet))
 #' munge(as.data.table(ChickWeight))
+#' munge(as.data.table(ChickWeight), byvar="Diet")
 munge <- function(x, byvar=NULL,
                   NUMLST=get_NUMLST(),
                   FACLST=get_FACLST(),
