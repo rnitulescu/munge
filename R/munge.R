@@ -13,6 +13,7 @@
 #'
 #' @param x data.table object containing columns to be summarized.
 #' @param byvar character variable representing name of variable to group statistics by (default: NULL, for one-way analysis).
+#' @param sep character variable representing character to use between appended strings in REF column (default: "_").
 #' @param NUMLST character vector of valid class types.
 #' @param FACLST character vector of valid class types.
 #' @param fun.list list of functions indexed by their names to be used in the summarization.
@@ -23,7 +24,7 @@
 #' data(ChickWeight)
 #' munge(as.data.table(ChickWeight))
 #' munge(as.data.table(ChickWeight), byvar="Diet")
-munge <- function(x, byvar=NULL,
+munge <- function(x, byvar=NULL, sep="_",
                   NUMLST=MYNUMLST,
                   FACLST=MYFACLST,
                   fun.list=list(armean=armean, stdev=stdev,
@@ -45,11 +46,11 @@ munge <- function(x, byvar=NULL,
 		if ( is.null(byvar) ) {
 			## A) compute 1-way frequency tables, if the list of such variables is non-empty
 			if ( length(disc.vars) > 0 ) {
-				disc.stat <- fn.summary(x, cols=disc.vars, FUN=tab1way, FUN.name="tab1way")
+				disc.stat <- fn.summary(x, cols=disc.vars, glue=sep, FUN=tab1way, FUN.name="tab1way")
 			}
 			## B) compute statistics for continuous variables and merge them together, if the list of such variables is non-empty
 			if ( length(cont.vars) > 0 ) {
-				cont.stat <- Map(function(y, z) fn.summary(x, cols=cont.vars, FUN=y, FUN.name=z), fun.list, names(fun.list))
+				cont.stat <- Map(function(y, z) fn.summary(x, cols=cont.vars, glue=sep, FUN=y, FUN.name=z), fun.list, names(fun.list))
 			}
 			## C) Add a row for the number of obs in table
 			tmp <- data.table(REF="NOBS", freq=nrow(x))
@@ -57,11 +58,11 @@ munge <- function(x, byvar=NULL,
 		## Case 2: 2-way stats
 			## A) compute 2-way frequency tables, if the list of such variables is non-empty
 			if ( length(disc.vars) > 0 ) {
-				disc.stat <- fn.summary(x, byvar=byvar, cols=disc.vars, FUN=tab2way, FUN.name="tab2way")
+				disc.stat <- fn.summary(x, byvar=byvar, cols=disc.vars, glue=sep, FUN=tab2way, FUN.name="tab2way")
 			}
 			## B) compute statistics for continuous variables and merge them together, if the list of such variables is non-empty
 			if ( length(cont.vars) > 0 ) {
-				cont.stat <- Map(function(y, z) fn.summary(x, byvar=byvar, cols=cont.vars, FUN=y, FUN.name=z), fun.list, names(fun.list))
+				cont.stat <- Map(function(y, z) fn.summary(x, byvar=byvar, cols=cont.vars, glue=sep, FUN=y, FUN.name=z), fun.list, names(fun.list))
 			}
 			## C) Add a row for the number of obs in table
 			## Tabulate number of observations per group (as per byvar)

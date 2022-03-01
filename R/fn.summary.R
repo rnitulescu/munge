@@ -4,12 +4,13 @@
 # @param x data.table object containing columns to be summarized.
 # @param byvar character variable representing name of variable to group statistics by (default: NULL).
 # @param cols character vector representing names of variables to compute statistics for.
+# @param glue character variable representing character to use between appended strings in REF column (default: "_").
 # @param FUN function to use for computing statistics.
 # @param FUN.name character variable representing name of function to use for computing statistics
 #                 (this function will only be called by another in a well controlled manner,
 #                 so this will not be an issue).
 # @keywords fn.summary
-fn.summary <- function(x, byvar=NULL, cols, FUN, FUN.name)
+fn.summary <- function(x, byvar=NULL, cols, glue="_", FUN, FUN.name)
 {
 	## Don't run if there are multiple byvars. Implementaton only works with 1 byvar at the moment.
 	if ( length(byvar) > 1 ) {
@@ -55,7 +56,7 @@ fn.summary <- function(x, byvar=NULL, cols, FUN, FUN.name)
 		## Stack tables
 		yt <- do.call("rbind", y)
 		## Create reference column, drop unneeded columns, and reorder columns
-		set(yt, j="REF", value = paste(yt[["VAR"]], yt[["CAT"]], sep="_"))
+		set(yt, j="REF", value = paste(yt[["VAR"]], yt[["CAT"]], sep=glue))
 		set(yt, j=c("VAR","CAT"), value = NULL)
 		setcolorder(yt, c("REF", setdiff(names(yt), "REF")))
 	}
