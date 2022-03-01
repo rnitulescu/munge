@@ -7,7 +7,7 @@
 #' @importFrom stats sd
 # @examples
 # stdev(c(1, 2, 3, NA))
-stdev <- function(x, NUMLST=get_NUMLST()) {
+stdev <- function(x, NUMLST=MYNUMLST) {
 	if ( !(class(x) %in% NUMLST) ) {
 		stop("Invalid variable type")
 	} else {

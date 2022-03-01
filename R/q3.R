@@ -7,7 +7,7 @@
 #' @importFrom stats quantile
 # @examples
 # q3(c(1, 2, 3, NA))
-q3 <- function(x, NUMLST=get_NUMLST()) {
+q3 <- function(x, NUMLST=MYNUMLST) {
 	if ( !(class(x) %in% NUMLST) ) {
 		stop("Invalid variable type")
 	} else {

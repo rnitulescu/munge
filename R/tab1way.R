@@ -8,7 +8,7 @@
 # @examples
 # tab1way(x=factor(c("A","B","B")))
 # tab1way(x=c(TRUE,FALSE,FALSE))
-tab1way <- function(x, FACLST=get_FACLST()) {
+tab1way <- function(x, FACLST=MYFACLST) {
 	## Don't run if variables are not of logical or factor type
 	if ( !(class(x) %in% FACLST) ) {
 		stop("Invalid variable type")

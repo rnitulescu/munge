@@ -10,7 +10,7 @@
 #' @importFrom stats reshape
 # @examples
 # tab2way(x=factor(c("A","B","B","A")), byvar=factor(c("C","D","C","D")))
-tab2way <- function(x, byvar, FACLST=get_FACLST()) {
+tab2way <- function(x, byvar, FACLST=MYFACLST) {
 	## Don't run if variables are not of logical or factor type
 	if ( !(class(x) %in% FACLST) | !(class(byvar) %in% FACLST) ) {
 		stop("Invalid variable type")

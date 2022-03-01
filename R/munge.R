@@ -24,8 +24,8 @@
 #' munge(as.data.table(ChickWeight))
 #' munge(as.data.table(ChickWeight), byvar="Diet")
 munge <- function(x, byvar=NULL,
-                  NUMLST=get_NUMLST(),
-                  FACLST=get_FACLST(),
+                  NUMLST=MYNUMLST,
+                  FACLST=MYFACLST,
                   fun.list=list(armean=armean, stdev=stdev,
                                 q1=q1, q2=q2, q3=q3,
                                 safe.min=safe.min, safe.max=safe.max,

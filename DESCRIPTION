@@ -1,6 +1,6 @@
 Package: munge
 Title: Efficient Summary Statistics
-Version: 0.0.0.9002
+Version: 0.0.0.9003
 Author: Roy Nitulescu <roy.nitulescu@gmail.com>
 Maintainer: Roy Nitulescu <roy.nitulescu@gmail.com>
 Description: Uses data.table to compute summary statistics efficiently.
