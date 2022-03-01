@@ -12,7 +12,8 @@
 # tab2way(x=factor(c("A","B","B","A")), byvar=factor(c("C","D","C","D")))
 tab2way <- function(x, byvar, FACLST=MYFACLST) {
 	## Don't run if variables are not of logical or factor type
-	if ( !(class(x) %in% FACLST) | !(class(byvar) %in% FACLST) ) {
+    ## (Added "flatten" here to get rid of "ordered" component to some factors' classes)
+	if ( !(flatten(class(x)) %in% FACLST) | !(flatten(class(byvar)) %in% FACLST) ) {
 		stop("Invalid variable type")
 	## Don't run if there are missing values for the byvar, since this leads to warning in reshape
 	} else if ( length(byvar[is.na(byvar)]) > 0 ) {

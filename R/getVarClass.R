@@ -6,6 +6,7 @@
 # @keywords getVarClass
 getVarClass <- function(name, x) {
     ## Used to be called "getClass", but renamed to avoid namespace issues
-	return(class(x[[name]])[1])
+    ## (Added "flatten" here to get rid of "ordered" component to some factors' classes)
+	return(flatten(class(x[[name]]))[1])
 }
 

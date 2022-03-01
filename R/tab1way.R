@@ -10,11 +10,12 @@
 # tab1way(x=c(TRUE,FALSE,FALSE))
 tab1way <- function(x, FACLST=MYFACLST) {
 	## Don't run if variables are not of logical or factor type
-	if ( !(class(x) %in% FACLST) ) {
+    ## (Added "flatten" here to get rid of "ordered" component to some factors' classes)
+	if ( !(flatten(class(x)) %in% FACLST) ) {
 		stop("Invalid variable type")
 	} else {
 		## Compute frequency and proportion (but drop the FALSE entries as they are redundant for for logical types)
-		if ( class(x) == "logical" ) {
+		if ( flatten(class(x)) == "logical" ) {
 			freq <- as.data.table(table(x, exclude="useNA"))[x != "FALSE"]
 			perc <- as.data.table(prop.table(table(x, exclude="useNA")))[x != "FALSE"]
 		} else {

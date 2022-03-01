@@ -7,7 +7,7 @@
 # @examples
 # armean(c(1, 2, 3, NA))
 armean <- function(x, NUMLST=MYNUMLST) {
-	if ( !(class(x) %in% NUMLST) ) {
+	if ( !(flatten(class(x)) %in% NUMLST) ) {
 		stop("Invalid variable type")
 	} else {
 		return(mean(x, na.rm=TRUE))

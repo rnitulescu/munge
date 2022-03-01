@@ -22,7 +22,9 @@
 #' @export
 #' @examples
 #' data(ChickWeight)
-#' munge(as.data.table(ChickWeight))
+#' munge(as.data.table(ChickWeight[c("weight","Time","Diet")]))
+#' munge(as.data.table(ChickWeight)) ## handles ordered factors, too
+#' munge(as.data.table(ChickWeight[c("weight","Time","Diet")]), byvar="Diet")
 #' munge(as.data.table(ChickWeight), byvar="Diet")
 munge <- function(x, byvar=NULL, sep="_",
                   NUMLST=MYNUMLST,

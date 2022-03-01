@@ -8,7 +8,7 @@
 # @examples
 # q2(c(1, 2, 3, NA))
 q2 <- function(x, NUMLST=MYNUMLST) {
-	if ( !(class(x) %in% NUMLST) ) {
+	if ( !(flatten(class(x)) %in% NUMLST) ) {
 		stop("Invalid variable type")
 	} else {
 		return(quantile(x, probs=0.50, na.rm=TRUE))
